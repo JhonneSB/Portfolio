@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${projeto.id} ? 'Editar Projeto' : 'Novo Projeto'"></title>
+    
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styleNovoProjeto.css}">
+
+</head>
+<body>
+    <div class="admin-container">
+        <div class="form-header">
+            <h1 class="form-title">
+                <i class="fas" th:class="${projeto.id} ? 'fa-edit' : 'fa-plus-circle'"></i>
+                <span th:text="${projeto.id} ? 'Editar Projeto' : 'Novo Projeto'"></span>
+            </h1>
+            <a href="/admin" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+        </div>
+        
+        <div class="card">
+            <form th:action="${projeto.id} ? @{'/admin/atualizar/' + ${projeto.id}} : @{'/admin/salvar'}" 
+                  th:object="${projeto}" 
+                  method="post">
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+                            <label for="nome" class="form-label">Nome do Projeto*</label>
+                            <input type="text" id="nome" th:field="*{nome}" class="form-control" required>
+                            <div class="error-message" th:if="${#fields.hasErrors('nome')}">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span th:errors="*{nome}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('categoria')} ? 'has-error'">
+                            <label for="categoria" class="form-label">Categoria*</label>
+                            <select id="categoria" th:field="*{categoria}" class="form-control" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option th:each="cat : ${T(com.portfolio.carlosjhonne.model.Projeto.Categoria).values()}" 
+                                        th:value="${cat}" 
+                                        th:text="${cat.name()}"></option>
+                            </select>
+                            <div class="error-message" th:if="${#fields.hasErrors('categoria')}">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span th:errors="*{categoria}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? 'has-error'">
+                    <label for="descricao" class="form-label">Descrição*</label>
+                    <textarea id="descricao" th:field="*{descricao}" class="form-control" required></textarea>
+                    <div class="error-message" th:if="${#fields.hasErrors('descricao')}">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span th:errors="*{descricao}"></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Imagem do Projeto (URL)</label>
+                    <input type="url" id="imagemUrl" th:field="*{imagemUrl}" class="form-control" 
+                           placeholder="https://exemplo.com/imagem.jpg">
+                    <img id="imagePreview" class="image-preview" th:src="${projeto.imagemUrl}" 
+                         th:if="${projeto.imagemUrl}" alt="Pré-visualização da imagem">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="link" class="form-label">Link do Projeto</label>
+                            <input type="url" id="link" th:field="*{link}" class="form-control" 
+                                   placeholder="https://exemplo.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="repositorio" class="form-label">Repositório (GitHub, etc.)</label>
+                            <input type="url" id="repositorio" th:field="*{repositorio}" class="form-control" 
+                                   placeholder="https://github.com/usuario/projeto">
+                        </div>
+                    </div>
+                </div>
+                
+               <div class="form-group">
+    <label class="form-label">Tecnologias Utilizadas*</label>
+    <input type="text" id="techInput" class="form-control" 
+           placeholder="Adicione tecnologias (ex: Java, React, Node.js)"
+           onkeydown="handleTechInput(event)">
+    
+    <div class="tech-tags-container" id="techTags">
+        <!-- Tags existentes do projeto -->
+        <span class="tech-tag" th:each="tech : ${projeto.tecnologias}" th:attr="data-value=${tech}">
+            <span th:text="${tech}"></span>
+            <span class="tech-tag-remove" onclick="removeTechTag(this)">×</span>
+        </span>
+    </div>
+    
+    <!-- Campo hidden que será enviado ao servidor -->
+    <input type="hidden" id="tecnologias" name="tecnologias" 
+           th:value="${#strings.listJoin(projeto.tecnologias, ',')}">
+    
+    <div class="error-message" th:if="${#fields.hasErrors('tecnologias')}">
+        <i class="fas fa-exclamation-circle"></i>
+        <span th:errors="tecnologias"></span>
+    </div>
+</div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-check">
+                            <input type="checkbox" id="ativo" th:field="*{ativo}" class="form-check-input">
+                            <label for="ativo" class="form-check-label">Projeto ativo</label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="destaque" th:field="*{destaque}" class="form-check-input">
+                            <label for="destaque" class="form-check-label">Destaque no portfólio</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="dataProjeto" class="form-label">Data do Projeto</label>
+                            <input type="date" th:field="*{dataCriacao}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-footer">
+                    <a href="/admin" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> <span th:text="${projeto.id} ? 'Atualizar Projeto' : 'Salvar Projeto'"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/js/novoProjeto.js"></script>
+</body>
+</html>
