@@ -960,6 +960,19 @@
         }
 
         /* Menu Mobile */
+       .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.8rem; /* Aumentei o tamanho do ícone */
+            cursor: pointer;
+            z-index: 1001;
+            transition: var(--transition);
+            padding: 0.5rem;
+            margin-left: auto; /* Empurra para a direita */
+        }
+
         @media (max-width: 767px) {
             .menu-toggle {
                 display: block;
@@ -967,20 +980,21 @@
             
             nav ul {
                 position: fixed;
-                top: 0;
+                top: 80px; /* Abaixo do header */
                 left: 0;
                 right: 0;
-                bottom: 0;
+                height: calc(100vh - 80px);
                 background-color: var(--background-darker);
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-start;
                 gap: 1.5rem;
+                padding: 2rem;
                 transform: translateX(100%);
                 opacity: 0;
                 z-index: 999;
-                padding: 2rem;
                 transition: transform 0.3s ease, opacity 0.3s ease;
+                overflow-y: auto;
             }
             
             nav ul.active {
@@ -988,10 +1002,23 @@
                 opacity: 1;
             }
             
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
             nav a {
                 font-size: 1.2rem;
-                padding: 0.5rem 1rem;
+                padding: 0.8rem 1rem;
+                display: block;
+                width: 100%;
             }
+            
+            .menu-overlay {
+                top: 80px; /* Começa abaixo do header */
+                height: calc(100vh - 80px);
+            }
+        
             
             .hero h1 {
                 font-size: 2.2rem;
@@ -1023,34 +1050,17 @@
 
         /* Ajustes para telas muito pequenas */
         @media (max-width: 400px) {
-            .hero h1 {
-                font-size: 2rem;
+            .menu-toggle {
+                font-size: 1.5rem; /* Tamanho menor para telas muito pequenas */
             }
             
-            .hero .tagline {
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
+            nav ul {
+                padding: 1.5rem;
             }
             
-            .hero-image-container {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .timeline-content {
-                padding: 12px;
-            }
-            
-            .timeline-title {
+            nav a {
                 font-size: 1.1rem;
-            }
-            
-            .timeline-description {
-                font-size: 0.8rem;
+                padding: 0.7rem;
             }
         }
     </style>
@@ -1059,11 +1069,11 @@
     <!-- Header -->
     <header id="main-header">
         <div class="logo">Carlos Jhonne</div>
-        <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+        <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-menu">
             <i class="fas fa-bars"></i>
         </button>
         <nav>
-            <ul>
+            <ul id="main-menu">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#projects">Projetos</a></li>
                 <li><a href="#skills">Habilidades</a></li>
@@ -1404,9 +1414,6 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Atualiza o ano no footer
-            document.getElementById('year').textContent = new Date().getFullYear();
-            
             // Menu Mobile
             const menuToggle = document.querySelector('.menu-toggle');
             const navList = document.querySelector('nav ul');
@@ -1415,8 +1422,8 @@
             function toggleMenu() {
                 const isOpen = navList.classList.toggle('active');
                 menuOverlay.classList.toggle('active', isOpen);
-                menuToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
                 menuToggle.setAttribute('aria-expanded', isOpen);
+                menuToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
                 document.body.style.overflow = isOpen ? 'hidden' : '';
             }
             
