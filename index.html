@@ -1003,75 +1003,83 @@ footer {
     <div class="container">
         <h2 class="section-title">Projetos</h2>
         <div class="projects-grid" id="projects-container">
-           <script>
-// Carrega os projetos do arquivo JSON
-// Versão reforçada contra erros
-document.addEventListener('DOMContentLoaded', async () => {
-    const container = document.getElementById('projects-container');
-    
-    try {
-        // Força atualização do cache
-        const response = await fetch(`./projetos.json?t=${Date.now()}`);
-        
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        
-        const data = await response.text();
-        console.log("Conteúdo bruto:", data); // Verifique no console
-        
-        if (!data.trim()) throw new Error("Arquivo vazio ou inválido");
-        
-        const projetos = JSON.parse(data);
-        
-        if (!Array.isArray(projetos)) throw new Error("JSON não é um array");
-
-        container.innerHTML = projetos.map(projeto => `
+          <section id="projects">
+    <div class="container">
+        <h2 class="section-title">Projetos</h2>
+        <div class="projects-grid">
+            <!-- PROJETO 1 -->
             <div class="project-card">
                 <div class="project-image">
-                    <img src="${projeto.imagemUrl}" 
-                         alt="${projeto.nome}"
-                         onerror="this.onerror=null;this.src='images/default.jpg'">
+                    <img src="images/estoque.jpg" alt="Sistema de Estoque">
                 </div>
                 <div class="project-content">
-                    <h3>${projeto.nome}</h3>
-                    <p>${projeto.descricao}</p>
+                    <h3 class="project-title">Sistema de Estoque</h3>
+                    <p class="project-description">Sistema em Java para gerenciamento de estoque com Spring Boot</p>
                     <div class="project-tech">
-                        ${(projeto.tecnologias || []).map(tech => 
-                            `<span class="tech-tag">${tech}</span>`).join('')}
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">MySQL</span>
                     </div>
                     <div class="project-links">
-                        <a href="${projeto.repositorio || '#'}" 
-                           target="_blank" 
-                           class="project-link ${!projeto.repositorio ? 'disabled' : ''}">
+                        <span class="project-link disabled">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </span>
+                        <a href="https://github.com/JhonneSB/estoque-spring" 
+                           class="project-link" 
+                           target="_blank">
                             <i class="fab fa-github"></i> Código
                         </a>
                     </div>
                 </div>
             </div>
-        `).join('');
 
-    } catch (error) {
-        console.error("Erro completo:", error);
-        container.innerHTML = `
-            <div class="error-alert">
-                <i class="fas fa-bug"></i>
-                <h3>Falha crítica</h3>
-                <p>${error.message}</p>
-                <div class="debug-info">
-                    <p><strong>Dica:</strong> Verifique:</p>
-                    <ul>
-                        <li>O arquivo existe em <code>./projetos.json</code></li>
-                        <li>O JSON é válido (use JSONLint)</li>
-                        <li>Não há erros no console (F12)</li>
-                    </ul>
+            <!-- PROJETO 2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/portfolio.jpg" alt="Portfólio">
                 </div>
-                <button onclick="location.reload()">
-                    <i class="fas fa-sync-alt"></i> Recarregar
-                </button>
+                <div class="project-content">
+                    <h3 class="project-title">Meu Portfólio</h3>
+                    <p class="project-description">Site pessoal desenvolvido com HTML, CSS e JavaScript</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link disabled">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </span>
+                        <a href="https://github.com/JhonneSB/portfolio" 
+                           class="project-link" 
+                           target="_blank">
+                            <i class="fab fa-github"></i> Código
+                        </a>
+                    </div>
+                </div>
             </div>
-        `;
-    }
-});
-</script>
+
+            <!-- PROJETO 3 (ADICIONE MAIS CONFORME NECESSÁRIO) -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/default.jpg" alt="Projeto Futuro">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Próximo Projeto</h3>
+                    <p class="project-description">Em desenvolvimento - novidades em breve!</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Em breve</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link disabled">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </span>
+                        <span class="project-link disabled">
+                            <i class="fab fa-github"></i> Código
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
