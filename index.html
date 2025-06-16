@@ -1006,71 +1006,70 @@ footer {
            <script>
 // Carrega os projetos do arquivo JSON
 // Versão reforçada contra erros
-document.addEventListener('DOMContentLoaded', function() {
-    const loadProjects = async () => {
-        try {
-            const response = await fetch('./projetos.json');
-            
-            if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
-            }
-            
-            const text = await response.text();
-            if (!text.trim()) {
-                throw new Error('Arquivo JSON está vazio');
-            }
-            
-            const projetos = JSON.parse(text);
-            renderProjects(projetos);
-            
-        } catch (error) {
-            console.error('Erro detalhado:', error);
-            showError(error);
-        }
-    };
+document.addEventListener('DOMContentLoaded', async () => {
+    const container = document.getElementById('projects-container');
+    
+    try {
+        // Força atualização do cache
+        const response = await fetch(`./projetos.json?t=${Date.now()}`);
+        
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        
+        const data = await response.text();
+        console.log("Conteúdo bruto:", data); // Verifique no console
+        
+        if (!data.trim()) throw new Error("Arquivo vazio ou inválido");
+        
+        const projetos = JSON.parse(data);
+        
+        if (!Array.isArray(projetos)) throw new Error("JSON não é um array");
 
-    const renderProjects = (projetos) => {
-        const container = document.getElementById('projects-container');
         container.innerHTML = projetos.map(projeto => `
             <div class="project-card">
                 <div class="project-image">
                     <img src="${projeto.imagemUrl}" 
-                         alt="${projeto.nome}" 
-                         onerror="this.src='images/default.jpg'">
+                         alt="${projeto.nome}"
+                         onerror="this.onerror=null;this.src='images/default.jpg'">
                 </div>
                 <div class="project-content">
                     <h3>${projeto.nome}</h3>
                     <p>${projeto.descricao}</p>
                     <div class="project-tech">
-                        ${projeto.tecnologias.map(tech => 
+                        ${(projeto.tecnologias || []).map(tech => 
                             `<span class="tech-tag">${tech}</span>`).join('')}
                     </div>
                     <div class="project-links">
-                        <a href="${projeto.repositorio}" target="_blank" class="project-link">
+                        <a href="${projeto.repositorio || '#'}" 
+                           target="_blank" 
+                           class="project-link ${!projeto.repositorio ? 'disabled' : ''}">
                             <i class="fab fa-github"></i> Código
                         </a>
                     </div>
                 </div>
             </div>
         `).join('');
-    };
 
-    const showError = (error) => {
-        const container = document.getElementById('projects-container');
+    } catch (error) {
+        console.error("Erro completo:", error);
         container.innerHTML = `
-            <div class="error-box">
-                <i class="fas fa-exclamation-circle"></i>
-                <h3>Erro ao carregar projetos</h3>
+            <div class="error-alert">
+                <i class="fas fa-bug"></i>
+                <h3>Falha crítica</h3>
                 <p>${error.message}</p>
-                <button onclick="window.location.reload()">
-                    <i class="fas fa-sync-alt"></i> Tentar novamente
+                <div class="debug-info">
+                    <p><strong>Dica:</strong> Verifique:</p>
+                    <ul>
+                        <li>O arquivo existe em <code>./projetos.json</code></li>
+                        <li>O JSON é válido (use JSONLint)</li>
+                        <li>Não há erros no console (F12)</li>
+                    </ul>
+                </div>
+                <button onclick="location.reload()">
+                    <i class="fas fa-sync-alt"></i> Recarregar
                 </button>
-                <small>Verifique o arquivo projetos.json</small>
             </div>
         `;
-    };
-
-    loadProjects();
+    }
 });
 </script>
         </div>
