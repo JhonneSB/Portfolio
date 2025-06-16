@@ -1005,62 +1005,72 @@ footer {
         <div class="projects-grid" id="projects-container">
            <script>
 // Carrega os projetos do arquivo JSON
+// Versão reforçada contra erros
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('./projetos.json')
-        .then(response => {
+    const loadProjects = async () => {
+        try {
+            const response = await fetch('./projetos.json');
+            
             if (!response.ok) {
-                throw new Error(`Erro HTTP! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(projetos => {
-            if (!projetos || projetos.length === 0) {
-                throw new Error('O arquivo JSON está vazio');
+                throw new Error(`Erro HTTP: ${response.status}`);
             }
             
-            const container = document.getElementById('projects-container');
-            container.innerHTML = ''; // Limpa o container
+            const text = await response.text();
+            if (!text.trim()) {
+                throw new Error('Arquivo JSON está vazio');
+            }
             
-            projetos.forEach(projeto => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'project-card';
-                projectCard.innerHTML = `
-                    <div class="project-image">
-                        <img src="${projeto.imagemUrl || 'images/default.jpg'}" alt="${projeto.nome}">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">${projeto.nome}</h3>
-                        <p class="project-description">${projeto.descricao}</p>
-                        <div class="project-tech">
-                            ${projeto.tecnologias.map(tech => 
-                                `<span class="tech-tag">${tech}</span>`
-                            ).join('')}
-                        </div>
-                        <div class="project-links">
-                            <span class="project-link disabled">
-                                <i class="fas fa-external-link-alt"></i> Demo
-                            </span>
-                            <a href="${projeto.repositorio}" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> Código
-                            </a>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(projectCard);
-            });
-        })
-        .catch(error => {
+            const projetos = JSON.parse(text);
+            renderProjects(projetos);
+            
+        } catch (error) {
             console.error('Erro detalhado:', error);
-            const container = document.getElementById('projects-container');
-            container.innerHTML = `
-                <div class="error-message">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Erro ao carregar projetos</p>
-                    <small>${error.message}</small>
-                    <button onclick="location.reload()">Tentar novamente</button>
+            showError(error);
+        }
+    };
+
+    const renderProjects = (projetos) => {
+        const container = document.getElementById('projects-container');
+        container.innerHTML = projetos.map(projeto => `
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="${projeto.imagemUrl}" 
+                         alt="${projeto.nome}" 
+                         onerror="this.src='images/default.jpg'">
                 </div>
-            `;
-        });
+                <div class="project-content">
+                    <h3>${projeto.nome}</h3>
+                    <p>${projeto.descricao}</p>
+                    <div class="project-tech">
+                        ${projeto.tecnologias.map(tech => 
+                            `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        <a href="${projeto.repositorio}" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Código
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    };
+
+    const showError = (error) => {
+        const container = document.getElementById('projects-container');
+        container.innerHTML = `
+            <div class="error-box">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>Erro ao carregar projetos</h3>
+                <p>${error.message}</p>
+                <button onclick="window.location.reload()">
+                    <i class="fas fa-sync-alt"></i> Tentar novamente
+                </button>
+                <small>Verifique o arquivo projetos.json</small>
+            </div>
+        `;
+    };
+
+    loadProjects();
 });
 </script>
         </div>
