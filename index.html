@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio profissional de Carlos Jhonne - Desenvolvedor e criador de soluções inovadoras">
+    <meta name="description"
+        content="Portfólio profissional de Carlos Jhonne - Desenvolvedor e criador de soluções inovadoras">
     <title>Carlos Jhonne | Portfólio</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary-color: #4a6fa5;
@@ -182,7 +186,12 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            margin-left: auto;
+            /* Isso empurra o botão para a direita */
+            margin-right: 0.5rem;
+            /* Espaço da borda direita */
         }
+
 
         .menu-toggle:hover {
             background-color: rgba(74, 111, 165, 0.1);
@@ -742,7 +751,8 @@
             color: var(--text-highlight);
         }
 
-        .contact-details p, .contact-details a {
+        .contact-details p,
+        .contact-details a {
             color: var(--text-muted);
             text-decoration: none;
             transition: var(--transition);
@@ -938,16 +948,16 @@
                 width: 250px;
                 height: 250px;
             }
-            
+
             .cta-buttons {
                 flex-direction: row;
                 max-width: 100%;
             }
-            
+
             .cta-button {
                 width: auto;
             }
-            
+
             .project-links {
                 flex-direction: row;
             }
@@ -958,16 +968,16 @@
                 padding: 0.8rem 2rem;
                 height: 70px;
             }
-            
+
             .logo {
                 font-size: 1.5rem;
                 max-width: none;
             }
-            
+
             .menu-toggle {
                 display: none;
             }
-            
+
             nav ul {
                 position: static;
                 height: auto;
@@ -981,25 +991,25 @@
                 align-items: center;
                 justify-content: flex-end;
             }
-            
+
             nav ul li {
                 width: auto;
                 border-bottom: none;
             }
-            
+
             nav a {
                 padding: 0.5rem 0.8rem;
                 font-size: 0.95rem;
                 width: auto;
                 position: relative;
             }
-            
+
             nav a:hover {
                 background-color: transparent;
                 padding-left: 0.8rem;
                 color: var(--primary-color);
             }
-            
+
             nav a::after {
                 content: '';
                 position: absolute;
@@ -1010,82 +1020,82 @@
                 left: 0;
                 transition: width 0.3s ease;
             }
-            
+
             nav a:hover::after {
                 width: 100%;
             }
-            
+
             .menu-overlay {
                 display: none;
             }
-            
+
             .hero-content {
                 flex-direction: row;
                 text-align: left;
                 gap: 3rem;
             }
-            
+
             .hero-text {
                 text-align: left;
                 order: 1;
                 max-width: 60%;
             }
-            
+
             .hero-image {
                 order: 2;
             }
-            
+
             .hero h1 {
                 font-size: 2.8rem;
             }
-            
+
             .hero p {
                 padding: 0;
             }
-            
+
             .cta-buttons {
                 justify-content: flex-start;
                 margin-left: 0;
                 margin-right: 0;
             }
-            
+
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .skills-container {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .contact-container {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .timeline::before {
                 left: 50%;
             }
-            
+
             .timeline-item {
                 width: 50%;
                 padding: 0 40px 30px;
             }
-            
+
             .timeline-item:nth-child(odd) {
                 left: 0;
             }
-            
+
             .timeline-item:nth-child(even) {
                 left: 50%;
             }
-            
+
             .timeline-dot {
                 right: -8px;
             }
-            
+
             .timeline-item:nth-child(even) .timeline-dot {
                 left: -8px;
             }
-            
+
             .timeline-content::after {
                 content: '';
                 position: absolute;
@@ -1097,7 +1107,7 @@
                 transform: rotate(45deg);
                 z-index: -1;
             }
-            
+
             .timeline-item:nth-child(even) .timeline-content::after {
                 left: -10px;
                 right: auto;
@@ -1109,30 +1119,30 @@
                 font-size: 2.5rem;
                 margin-bottom: 3rem;
             }
-            
+
             .section-title::after {
                 width: 80px;
                 height: 4px;
                 bottom: -15px;
             }
-            
+
             .hero h1 {
                 font-size: 3.2rem;
             }
-            
+
             .hero .tagline {
                 font-size: 1.3rem;
             }
-            
+
             .hero-image-container {
                 width: 300px;
                 height: 300px;
             }
-            
+
             .projects-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            
+
             .skills-container {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -1142,7 +1152,7 @@
             .hero h1 {
                 font-size: 3.5rem;
             }
-            
+
             .hero-image-container {
                 width: 350px;
                 height: 350px;
@@ -1150,6 +1160,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header id="main-header">
@@ -1168,7 +1179,7 @@
         </nav>
         <div class="menu-overlay"></div>
     </header>
-    
+
     <!-- Hero Section -->
     <section id="home">
         <div class="container">
@@ -1176,7 +1187,8 @@
                 <div class="hero-text">
                     <h1>Carlos Jhonne</h1>
                     <p class="tagline">Estudante de Desenvolvimento</p>
-                    <p>Atualmente no 3º semestre do curso técnico em Desenvolvimento de Sistemas, amante de tecnologia. Explorando o universo da programação com foco em Java, Spring Boot e desenvolvimento web.</p>
+                    <p>Atualmente no 3º semestre do curso técnico em Desenvolvimento de Sistemas, amante de tecnologia.
+                        Explorando o universo da programação com foco em Java, Spring Boot e desenvolvimento web.</p>
                     <div class="cta-buttons">
                         <a href="#projects" class="cta-button">
                             <i class="fas fa-code"></i> Meus Projetos
@@ -1188,13 +1200,14 @@
                 </div>
                 <div class="hero-image">
                     <div class="hero-image-container">
-                        <img src="https://avatars.githubusercontent.com/u/200763727?s=400&u=79f49084b8e4dcc439b25b9aae28793ddf3ac4e3&v=4" alt="Carlos Jhonne">
+                        <img src="https://avatars.githubusercontent.com/u/200763727?s=400&u=79f49084b8e4dcc439b25b9aae28793ddf3ac4e3&v=4"
+                            alt="Carlos Jhonne">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
@@ -1203,11 +1216,13 @@
                 <!-- PROJETO 1 -->
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <img src="https://www.markplan.com.br/wp-content/uploads/2020/05/est%C3%BAdio-musical.jpg" alt="Gravadora Web">
+                        <img src="https://www.markplan.com.br/wp-content/uploads/2020/05/est%C3%BAdio-musical.jpg"
+                            alt="Gravadora Web">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Gravadora Web</h3>
-                        <p class="project-description">Sistema CRUD de artistas, álbuns e gravadoras, feito em Java Spring Boot com Thymeleaf e JPA.</p>
+                        <p class="project-description">Sistema CRUD de artistas, álbuns e gravadoras, feito em Java
+                            Spring Boot com Thymeleaf e JPA.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Java</span>
                             <span class="tech-tag">HTML</span>
@@ -1217,9 +1232,7 @@
                             <span class="project-link disabled">
                                 <i class="fas fa-external-link-alt"></i> Demo
                             </span>
-                            <a href="https://github.com/JhonneSB/GravadoraWeb.git" 
-                               class="project-link" 
-                               target="_blank">
+                            <a href="https://github.com/JhonneSB/GravadoraWeb.git" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> Código
                             </a>
                         </div>
@@ -1229,11 +1242,13 @@
                 <!-- PROJETO 2 -->
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <img src="https://agenciasebrae.com.br/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-26-at-13.08.35-1_p17048_thumb_resized.jpeg" alt="Controle Bancada Smart 4.0">
+                        <img src="https://agenciasebrae.com.br/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-26-at-13.08.35-1_p17048_thumb_resized.jpeg"
+                            alt="Controle Bancada Smart 4.0">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Controle Bancada Smart 4.0</h3>
-                        <p class="project-description">Aplicação web desenvolvida com Spring Boot para gerenciamento de dispositivos inteligentes e integração com a plataforma Smart 4.0.</p>
+                        <p class="project-description">Aplicação web desenvolvida com Spring Boot para gerenciamento de
+                            dispositivos inteligentes e integração com a plataforma Smart 4.0.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Java</span>
                             <span class="tech-tag">HTML</span>
@@ -1244,9 +1259,7 @@
                             <span class="project-link disabled">
                                 <i class="fas fa-external-link-alt"></i> Demo
                             </span>
-                            <a href="https://github.com/JhonneSB/AppSmartWeb.git" 
-                               class="project-link" 
-                               target="_blank">
+                            <a href="https://github.com/JhonneSB/AppSmartWeb.git" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> Código
                             </a>
                         </div>
@@ -1254,13 +1267,15 @@
                 </div>
 
                 <!-- PROJETO 3 -->
-                 <div class="project-card fade-in">
+                <div class="project-card fade-in">
                     <div class="project-image">
-                        <img src="https://cdn-images.zety.com/images/zety/landings/templates/step_4@3x.png" alt="Criador de Currículo Web">
+                        <img src="https://cdn-images.zety.com/images/zety/landings/templates/step_4@3x.png"
+                            alt="Criador de Currículo Web">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Criador de Currículo Web</h3>
-                        <p class="project-description">É uma aplicação web simples feita em Java Spring Boot com Thymeleaf, que gera um currículo em PDF a partir de dados preenchidos pelo usuário.</p>
+                        <p class="project-description">É uma aplicação web simples feita em Java Spring Boot com
+                            Thymeleaf, que gera um currículo em PDF a partir de dados preenchidos pelo usuário.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Java</span>
                             <span class="tech-tag">HTML</span>
@@ -1270,9 +1285,8 @@
                             <span class="project-link disabled">
                                 <i class="fas fa-external-link-alt"></i> Demo
                             </span>
-                            <a href="https://github.com/JhonneSB/CriadorDeCurriculoWeb.git" 
-                               class="project-link" 
-                               target="_blank">
+                            <a href="https://github.com/JhonneSB/CriadorDeCurriculoWeb.git" class="project-link"
+                                target="_blank">
                                 <i class="fab fa-github"></i> Código
                             </a>
                         </div>
@@ -1281,7 +1295,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Skills Section -->
     <section id="skills">
         <div class="container">
@@ -1299,9 +1313,10 @@
                         <span class="tech-tag">HTML5</span>
                         <span class="tech-tag">CSS3</span>
                     </div>
-                    <p class="skill-description">Desenvolvimento de aplicações com foco em Java para backend e tecnologias web para frontend.</p>
+                    <p class="skill-description">Desenvolvimento de aplicações com foco em Java para backend e
+                        tecnologias web para frontend.</p>
                 </div>
-                
+
                 <!-- Frameworks -->
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
@@ -1313,9 +1328,10 @@
                         <span class="tech-tag">Thymeleaf</span>
                         <span class="tech-tag">JPA/Hibernate</span>
                     </div>
-                    <p class="skill-description">Construção de aplicações web com Spring Framework e integração com bancos de dados.</p>
+                    <p class="skill-description">Construção de aplicações web com Spring Framework e integração com
+                        bancos de dados.</p>
                 </div>
-                
+
                 <!-- Banco de Dados -->
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
@@ -1328,7 +1344,7 @@
                     </div>
                     <p class="skill-description">Criação e manipulação de bancos de dados relacionais com MySQL.</p>
                 </div>
-                
+
                 <!-- Modelagem -->
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
@@ -1340,9 +1356,10 @@
                         <span class="tech-tag">Casos de Uso</span>
                         <span class="tech-tag">Diagrama de Classes</span>
                     </div>
-                    <p class="skill-description">Análise e modelagem de sistemas utilizando diagramas UML e técnicas de engenharia de software.</p>
+                    <p class="skill-description">Análise e modelagem de sistemas utilizando diagramas UML e técnicas de
+                        engenharia de software.</p>
                 </div>
-                
+
                 <!-- Aprendendo -->
                 <div class="skill-card learning fade-in">
                     <div class="skill-icon">
@@ -1354,12 +1371,13 @@
                         <span class="tech-tag">Spring Security</span>
                         <span class="tech-tag">APIs REST</span>
                     </div>
-                    <p class="skill-description">Tecnologias que estou estudando atualmente para expandir meu conhecimento.</p>
+                    <p class="skill-description">Tecnologias que estou estudando atualmente para expandir meu
+                        conhecimento.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Experience Section -->
     <section id="experience">
         <div class="container">
@@ -1371,33 +1389,37 @@
                         <div class="timeline-date">2024 - Presente</div>
                         <h3 class="timeline-title">Estágio - Engenharia de Processos</h3>
                         <div class="timeline-company">Krah Brasil</div>
-                        <p class="timeline-description">Auxílio nas demandas do setor, atividades administrativas e otimização dos processos da fábrica</p>
+                        <p class="timeline-description">Auxílio nas demandas do setor, atividades administrativas e
+                            otimização dos processos da fábrica</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">2023 - 2024</div>
                         <h3 class="timeline-title">Jovem Aprendiz</h3>
                         <div class="timeline-company">Krah Brasil</div>
-                        <p class="timeline-description">Pela Krah atuei como jovem aprendiz no setor da Engenharia de Processos, intercalando os dias na empresa e no senai onde fiz o curso de Aprendizagem Industrial em Assistente Administrativo</p>
+                        <p class="timeline-description">Pela Krah atuei como jovem aprendiz no setor da Engenharia de
+                            Processos, intercalando os dias na empresa e no senai onde fiz o curso de Aprendizagem
+                            Industrial em Assistente Administrativo</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">2022 - 2022</div>
                         <h3 class="timeline-title">Jovem Aprendiz</h3>
                         <div class="timeline-company">Metisa METALÚRGICA</div>
-                        <p class="timeline-description">Atuando como jovem aprendiz pela Metisa fiz o curso de Aprendizagem Industrial em Eletricista Industrial</p>
+                        <p class="timeline-description">Atuando como jovem aprendiz pela Metisa fiz o curso de
+                            Aprendizagem Industrial em Eletricista Industrial</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -1405,8 +1427,9 @@
             <div class="contact-container">
                 <div class="contact-info fade-in">
                     <h3>Vamos conversar!</h3>
-                    <p>Estou disponível para oportunidades de trabalho, projetos freelance ou apenas para bater um papo sobre tecnologia.</p>
-                    
+                    <p>Estou disponível para oportunidades de trabalho, projetos freelance ou apenas para bater um papo
+                        sobre tecnologia.</p>
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
@@ -1416,7 +1439,7 @@
                             <a href="mailto:carlosjhonne7@gmail.com">carlosjhonne7@gmail.com</a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-phone-alt"></i>
@@ -1426,7 +1449,7 @@
                             <a href="tel:+5547999959458">+55 (47) 99995-9458</a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
@@ -1437,43 +1460,43 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <form class="contact-form fade-in" id="contact-form">
                     <div class="form-group">
                         <label for="name">Nome</label>
                         <input type="text" id="name" name="name" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="subject">Assunto</label>
                         <input type="text" id="subject" name="subject" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="message">Mensagem</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
-                    
+
                     <input type="hidden" name="_captcha" value="false">
-                    
+
                     <button type="submit" class="submit-btn">Enviar Mensagem</button>
                 </form>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">Carlos Jhonne</div>
                 <p class="footer-text">Estudante de Desenvolvimento & Amante de Tecnologia</p>
-                
+
                 <div class="social-links">
                     <a href="https://github.com/JhonneSB" target="_blank" aria-label="GitHub">
                         <i class="fab fa-github"></i>
@@ -1488,24 +1511,25 @@
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
-                
-                <p class="copyright">copyright © <span id="year"></span> Carlos Jhonne. Todos os direitos reservados.</p>
+
+                <p class="copyright">copyright © <span id="year"></span> Carlos Jhonne. Todos os direitos reservados.
+                </p>
             </div>
         </div>
     </footer>
-    
+
     <!-- Botão de voltar ao topo -->
     <a href="#home" class="back-to-top" aria-label="Voltar ao topo">
         <i class="fas fa-arrow-up"></i>
     </a>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Menu Mobile
             const menuToggle = document.querySelector('.menu-toggle');
             const navList = document.querySelector('nav ul');
             const menuOverlay = document.querySelector('.menu-overlay');
-            
+
             function toggleMenu() {
                 const isOpen = navList.classList.toggle('active');
                 menuOverlay.classList.toggle('active', isOpen);
@@ -1513,10 +1537,10 @@
                 menuToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
                 document.body.style.overflow = isOpen ? 'hidden' : '';
             }
-            
+
             menuToggle.addEventListener('click', toggleMenu);
             menuOverlay.addEventListener('click', toggleMenu);
-            
+
             // Fecha o menu ao clicar em um link
             document.querySelectorAll('nav a').forEach(link => {
                 link.addEventListener('click', () => {
@@ -1525,39 +1549,39 @@
                     }
                 });
             });
-            
+
             // Fecha o menu ao pressionar ESC
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && navList.classList.contains('active')) {
                     toggleMenu();
                 }
             });
-            
+
             // Fecha o menu ao redimensionar para tamanho maior
             function handleResize() {
                 if (window.innerWidth > 768 && navList.classList.contains('active')) {
                     toggleMenu();
                 }
             }
-            
+
             window.addEventListener('resize', handleResize);
-            
+
             // Scroll suave para links internos
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+                anchor.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    
+
                     if (targetElement) {
                         const headerHeight = document.querySelector('header').offsetHeight;
                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                        
+
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
                         });
-                        
+
                         // Atualiza a URL sem recarregar a página
                         if (history.pushState) {
                             history.pushState(null, null, targetId);
@@ -1567,18 +1591,18 @@
                     }
                 });
             });
-            
+
             // Efeito de scroll no header
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 const header = document.querySelector('header');
                 const backToTop = document.querySelector('.back-to-top');
-                
+
                 if (window.scrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
-                
+
                 // Mostra/oculta o botão de voltar ao topo
                 if (window.scrollY > 300) {
                     backToTop.classList.add('visible');
@@ -1586,7 +1610,7 @@
                     backToTop.classList.remove('visible');
                 }
             });
-            
+
             // Observador de interseção para animações fade-in
             const fadeObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1595,48 +1619,49 @@
                     }
                 });
             }, { threshold: 0.1 });
-            
+
             document.querySelectorAll('.fade-in').forEach(element => {
                 fadeObserver.observe(element);
             });
-            
+
             // Formulário de contato
             const contactForm = document.getElementById('contact-form');
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+                contactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     const btn = this.querySelector('.submit-btn');
                     const originalText = btn.textContent;
                     btn.textContent = 'Enviando...';
                     btn.disabled = true;
-                    
+
                     fetch('https://formsubmit.co/ajax/carlosjhonne7@gmail.com', {
                         method: 'POST',
                         body: new FormData(this)
                     })
-                    .then(response => {
-                        if (!response.ok) throw new Error('Erro na rede');
-                        return response.json();
-                    })
-                    .then(data => {
-                        alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
-                        this.reset();
-                    })
-                    .catch(error => {
-                        alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente mais tarde.');
-                        console.error('Error:', error);
-                    })
-                    .finally(() => {
-                        btn.textContent = originalText;
-                        btn.disabled = false;
-                    });
+                        .then(response => {
+                            if (!response.ok) throw new Error('Erro na rede');
+                            return response.json();
+                        })
+                        .then(data => {
+                            alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
+                            this.reset();
+                        })
+                        .catch(error => {
+                            alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente mais tarde.');
+                            console.error('Error:', error);
+                        })
+                        .finally(() => {
+                            btn.textContent = originalText;
+                            btn.disabled = false;
+                        });
                 });
             }
-            
+
             // Atualiza o ano no copyright
             document.getElementById('year').textContent = new Date().getFullYear();
         });
     </script>
 </body>
+
 </html>
