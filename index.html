@@ -1400,37 +1400,59 @@
         });
         
         // Menu mobile para telas pequenas
-        function setupMobileMenu() {
-            const header = document.querySelector('header');
-            const nav = document.querySelector('nav');
-            
-            if (window.innerWidth <= 768) {
-                // Cria botão de menu
-                const menuBtn = document.createElement('button');
-                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                menuBtn.className = 'menu-toggle';
-                menuBtn.addEventListener('click', function() {
-                    header.classList.toggle('menu-open');
-                });
-                
-                // Insere o botão no header
-                header.insertBefore(menuBtn, nav);
-                
-                // Fecha o menu ao clicar em um link
-                nav.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        header.classList.remove('menu-open');
-                    });
-                });
-            } else {
-                // Remove o botão de menu se a tela for grande
-                const menuToggle = document.querySelector('.menu-toggle');
-                if (menuToggle) {
-                    menuToggle.remove();
-                }
-                header.classList.remove('menu-open');
+      // Menu Mobile
+function setupMobileMenu() {
+    const header = document.querySelector('header');
+    const nav = document.querySelector('nav');
+    const navList = document.querySelector('nav ul');
+    
+    // Cria botão de menu
+    const menuBtn = document.createElement('button');
+    menuBtn.className = 'menu-toggle';
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    menuBtn.setAttribute('aria-label', 'Abrir menu');
+    
+    // Cria overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    
+    // Adiciona ao DOM
+    header.appendChild(menuBtn);
+    document.body.appendChild(overlay);
+    
+    // Função para alternar menu
+    function toggleMenu() {
+        navList.classList.toggle('active');
+        overlay.classList.toggle('active');
+        menuBtn.innerHTML = navList.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        menuBtn.setAttribute('aria-label', 
+            navList.classList.contains('active') ? 'Fechar menu' : 'Abrir menu');
+    }
+    
+    // Event listeners
+    menuBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    
+    // Fecha o menu ao clicar em um link
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navList.classList.contains('active')) {
+                toggleMenu();
             }
+        });
+    });
+    
+    // Fecha o menu ao redimensionar para tamanho maior
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navList.classList.contains('active')) {
+            toggleMenu();
         }
+    });
+}
+
+// Chama a função quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', setupMobileMenu);
         
         // Executa na carga e no redimensionamento
         window.addEventListener('load', setupMobileMenu);
@@ -1439,35 +1461,82 @@
         // Adiciona estilos dinâmicos para o menu mobile
         const style = document.createElement('style');
         style.textContent = `
-            @media (max-width: 768px) {
-                nav ul {
-                    position: fixed;
-                    top: 80px;
-                    left: 0;
-                    right: 0;
-                    background-color: var(--background-darker);
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 1rem 0;
-                    gap: 1.5rem;
-                    transform: translateY(-150%);
-                    transition: transform 0.3s ease;
-                    z-index: 999;
-                }
-                
-                header.menu-open nav ul {
-                    transform: translateY(0);
-                }
-                
-                .menu-toggle {
-                    background: none;
-                    border: none;
-                    color: var(--text-light);
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    padding: 0.5rem;
-                }
-            }
+           /* Menu Mobile */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+nav ul {
+    display: flex;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--background-darker);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        opacity: 0;
+        z-index: 1000;
+        padding: 2rem;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    nav ul.active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    
+    nav a {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    nav a::after {
+        bottom: 0;
+    }
+    
+    header {
+        padding: 1rem;
+    }
+}
+
+/* Adicionando overlay quando menu está aberto */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
         `;
         document.head.appendChild(style);
     </script>
