@@ -975,38 +975,56 @@ footer {
 </section>
     
     <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Projetos</h2>
-            <div class="projects-grid">
-                <div class="project-card" th:each="projeto : ${projetos}">
+   <section id="projects">
+    <div class="container">
+        <h2 class="section-title">Projetos</h2>
+        <div class="projects-grid" id="projects-container">
+           <script>
+// Carrega os projetos do arquivo JSON
+fetch('projetos.json')
+    .then(response => response.json())
+    .then(projetos => {
+        const container = document.getElementById('projects-container');
+        
+        projetos.forEach(projeto => {
+            container.innerHTML += `
+                <div class="project-card">
                     <div class="project-image">
-                        <img th:src="${projeto.imagemUrl} ?: 'https://via.placeholder.com/600x400?text=Projeto'" 
-                             th:alt="${projeto.nome}">
+                        <img src="${projeto.imagemUrl}" alt="${projeto.nome}">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title" th:text="${projeto.nome}">Nome do Projeto</h3>
-                        <p class="project-description" th:text="${projeto.descricao}">Descrição do projeto</p>
+                        <h3 class="project-title">${projeto.nome}</h3>
+                        <p class="project-description">${projeto.descricao}</p>
                         <div class="project-tech">
-                            <span class="tech-tag" th:each="tech : ${projeto.tecnologias}" 
-                                  th:text="${tech}">Tecnologia</span>
+                            ${projeto.tecnologias.map(tech => 
+                                `<span class="tech-tag">${tech}</span>`
+                            ).join('')}
                         </div>
-                       <div class="project-links">
-    <!-- Botão Demo desabilitado -->
-    <span class="project-link disabled" th:if="${projeto.link}">
-        <i class="fas fa-external-link-alt"></i> Demo
-    </span>
-    
-    <a th:href="${projeto.repositorio}" class="project-link" target="_blank" 
-       th:if="${projeto.repositorio}">
-        <i class="fab fa-github"></i> Código
-    </a>
-</div>
+                        <div class="project-links">
+                            <span class="project-link disabled">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </span>
+                            <a href="${projeto.repositorio}" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> Código
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            `;
+        });
+    })
+    .catch(error => {
+        console.error("Erro ao carregar projetos:", error);
+        document.getElementById('projects-container').innerHTML = `
+            <p style="color: #ff6b6b; text-align: center;">
+                Ops! Não foi possível carregar os projetos. Recarregue a página.
+            </p>
+        `;
+    });
+</script>
         </div>
-    </section>
+    </div>
+</section>
     
    <!-- Skills Section -->
 <section id="skills">
