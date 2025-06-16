@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio profissional de Carlos Jhonne - Desenvolvedor e criador de soluções inovadoras">
+    <title>Carlos Jhonne | Portfólio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/styleHome.css}">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Carlos Jhonne</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#experience">Experiência</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+   <!-- Hero Section -->
+<section id="home">
+    <div class="hero-decoration hero-decoration-1"></div>
+    <div class="hero-decoration hero-decoration-2"></div>
+    
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Carlos Jhonne</h1>
+                <p class="tagline">Estudante de Desenvolvimento</p>
+                <p>Atualmente no 3º semestre do curso técnico em Desenvolvimento de Sistemas, apaixonado por aprender, criar soluções e evoluir um pouco mais a cada projeto. Explorando o universo da programação com foco em Java, Spring Boot e desenvolvimento web.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="cta-button">
+                        <i class="fas fa-code"></i> Meus Projetos
+                    </a>
+                    <a href="#contact" class="cta-button outline">
+                        <i class="fas fa-envelope"></i> Contato
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-container">
+                    <img src="https://avatars.githubusercontent.com/u/200763727?s=400&u=79f49084b8e4dcc439b25b9aae28793ddf3ac4e3&v=4" alt="Carlos Jhonne">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card" th:each="projeto : ${projetos}">
+                    <div class="project-image">
+                        <img th:src="${projeto.imagemUrl} ?: 'https://via.placeholder.com/600x400?text=Projeto'" 
+                             th:alt="${projeto.nome}">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" th:text="${projeto.nome}">Nome do Projeto</h3>
+                        <p class="project-description" th:text="${projeto.descricao}">Descrição do projeto</p>
+                        <div class="project-tech">
+                            <span class="tech-tag" th:each="tech : ${projeto.tecnologias}" 
+                                  th:text="${tech}">Tecnologia</span>
+                        </div>
+                       <div class="project-links">
+    <!-- Botão Demo desabilitado -->
+    <span class="project-link disabled" th:if="${projeto.link}">
+        <i class="fas fa-external-link-alt"></i> Demo
+    </span>
+    
+    <a th:href="${projeto.repositorio}" class="project-link" target="_blank" 
+       th:if="${projeto.repositorio}">
+        <i class="fab fa-github"></i> Código
+    </a>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   <!-- Skills Section -->
+<section id="skills">
+    <div class="container">
+        <h2 class="section-title">Habilidades & Tecnologias</h2>
+        <div class="skills-container">
+            <!-- Linguagens de Programação -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="skill-title">Linguagens</h3>
+                <div class="skill-techs">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                </div>
+                <p class="skill-description">Desenvolvimento de aplicações com foco em Java para backend e tecnologias web para frontend.</p>
+            </div>
+            
+            <!-- Frameworks -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-cubes"></i>
+                </div>
+                <h3 class="skill-title">Frameworks</h3>
+                <div class="skill-techs">
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">Thymeleaf</span>
+                    <span class="tech-tag">JPA/Hibernate</span>
+                </div>
+                <p class="skill-description">Construção de aplicações web com Spring Framework e integração com bancos de dados.</p>
+            </div>
+            
+            <!-- Banco de Dados -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="skill-title">Banco de Dados</h3>
+                <div class="skill-techs">
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Modelagem</span>
+                </div>
+                <p class="skill-description">Criação e manipulação de bancos de dados relacionais com MySQL.</p>
+            </div>
+            
+            <!-- Modelagem -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3 class="skill-title">Modelagem</h3>
+                <div class="skill-techs">
+                    <span class="tech-tag">UML</span>
+                    <span class="tech-tag">Casos de Uso</span>
+                    <span class="tech-tag">Diagrama de Classes</span>
+                </div>
+                <p class="skill-description">Análise e modelagem de sistemas utilizando diagramas UML e técnicas de engenharia de software.</p>
+            </div>
+            
+            <!-- Aprendendo -->
+            <div class="skill-card learning">
+                <div class="skill-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="skill-title">Em Aprendizado</h3>
+                <div class="skill-techs">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Spring Security</span>
+                    <span class="tech-tag">APIs REST</span>
+                </div>
+                <p class="skill-description">Tecnologias que estou estudando atualmente para expandir meu conhecimento.</p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experiência</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - Presente</div>
+                        <h3 class="timeline-title">Estágio - Engenharia de Processos</h3>
+                        <div class="timeline-company">Krah Brasil</div>
+                        <p class="timeline-description">Auxílio nas demandas do setor, atividades administrativas e otimização dos processos da fábrica</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - 2024</div>
+                        <h3 class="timeline-title">Jovem Aprendiz</h3>
+                        <div class="timeline-company">Krah Brasil</div>
+                        <p class="timeline-description">Pela Krah atuei como jovem aprendiz no setor da Engenharia de Processos, intercalando os dias na empresa e no senai onde fiz o curso de Aprendizagem Industrial em Assistente Administrativo</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - 2022</div>
+                        <h3 class="timeline-title">Jovem Aprendiz</h3>
+                        <div class="timeline-company">Metisa METALÚRGICA</div>
+                        <p class="timeline-description">Atuando como jovem aprendiz pela Metisa fiz o curso de Aprendizagem Industrial em Eletricista Industrial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contato</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Vamos conversar!</h3>
+                    <p>Estou disponível para oportunidades de trabalho, projetos freelance ou apenas para bater um papo sobre tecnologia.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>carlosjhonne7@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>+55 (47) 99995-9458</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Localização</h4>
+                            <p>Santa Catarina, Brasil</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="meuForm">
+    <!-- Campos do formulário -->
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="subject">Assunto</label>
+        <input type="text" id="subject" name="subject" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" required></textarea>
+    </div>
+    
+    <!-- Campo oculto para desativar o CAPTCHA -->
+    <input type="hidden" name="_captcha" value="false">
+    
+    <!-- Não use o campo _next -->
+    <button type="submit" class="submit-btn">Enviar Mensagem</button>
+</form>
+            </div>
+        </div>
+    </section>
+    <script>
+document.getElementById('meuForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Mostra feedback visual de envio (opcional)
+    const btn = this.querySelector('.submit-btn');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    
+    // Envia o formulário via FormSubmit
+    fetch('https://formsubmit.co/ajax/carlosjhonne7@gmail.com', {
+        method: 'POST',
+        body: new FormData(this)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Sucesso - mostra mensagem e reseta o form
+        alert('Mensagem enviada com sucesso! Obrigado!');
+        this.reset();
+    })
+    .catch(error => {
+        alert('Erro ao enviar: ' + error);
+    })
+    .finally(() => {
+        btn.textContent = 'Enviar Mensagem';
+        btn.disabled = false;
+    });
+});
+</script>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Carlos Jhonne</div>
+                <p>Estudante de Desenvolvimento & Amante de Tecnologia</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/JhonneSB" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/carlos-jhonne" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://twitter.com/seu-usuario" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/carlos_jhonness" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                
+                <p class="copyright">copyright © <span id="year"></span> Carlos Jhonne. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/js/home.js"></script>
+
+</body>
+</html>
