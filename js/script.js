@@ -104,7 +104,7 @@
             exp1Period: "2025 - Presente",
             exp1Title: "Assistente Administrativo jr - PCP",
             exp1Company: " - Krah Brasil",
-            exp1Desc: "Auxílio nas demandas do setor, atividades administrativas e otimização dos processos da fábrica. Desenvolvimento de planilhas automatizadas e apoio na implementação de melhorias contínuas.",
+            exp1Desc: "Apoio ao planejamento e controle da produção, com lançamento e acompanhamento de ordens, atualização de apontamentos, organização de relatórios e suporte à comunicação entre áreas para garantir o fluxo produtivo.",
             exp2Period: "2024 - 2025",
             exp2Title: "Estágio - Engenharia de Processos",
             exp2Company: " - Krah Brasil",
